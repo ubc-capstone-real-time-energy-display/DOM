@@ -3,7 +3,7 @@
 <body>
 <?php 
 	//open the html
-	$url = "localhost/DOM/test%20text.html";
+	$url = "localhost:4433/test%20text.html";
 	$ch = curl_init($url);
 	curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 	$content = curl_exec($ch);
@@ -15,17 +15,16 @@
     $dom = new DOMDocument();
     $dom->loadHTML($content);
 	
-	$links = array();
+	$data = array();
 	$container1 = $dom->getElementById("table-data");//find all element with id table-data
 	$container2 = $container1->getElementsByTagName("tr");//find all element inside tag <tr>
-	$data = $container2->getElementByTagName("td");//find all element inside tag <td>
-		//print out the data
-		foreach($datas as $data) {
-	$links[] = array(
-		'data' => $data
-	);
-		}
-	echo $links;
+	foreach($container2 as $item) {
+		$arr = $item->getElementsByTagName("td");//find all element inside tag <td>
+		$data[] = array(
+			'number' => $arr
+		);
+	}
+	echo $data;
 	
 	
 	
