@@ -24,7 +24,12 @@
 			'number' => $arr
 		);
 	}
-	echo $data;
+    foreach($data as $element) {
+        $items = $element['number'];
+        for ($i = 0; $i < $items->length; $i++) {
+            echo $items->item($i)->nodeValue . "<br />";
+        }
+    }
 	
 	
 	
