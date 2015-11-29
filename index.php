@@ -3,7 +3,7 @@
 <body>
 <?php 
 	//open the html
-    $url = "localhost:4433/DOM/test%20text.html";
+    $url = "http://ion.energy.ubc.ca/ion/Historical/DisplayLogs.aspx?queryId=831317ed-1695-4a28-a197-9d9bad7e727e&dgm=x-pml:/diagrams/ud/UBC_SUS/sub_diagrams/sub_diagram_totem%20park.dgm&node=VIP.BIS-APPIONPME-P&logServerName=QUERYSERVER.BIS-APPIONPME-P&logServerHandle=327952&isEventLog=";
 
     $ch = curl_init($url);
     
@@ -35,9 +35,29 @@
 
     $dom = new DOMDocument();
     $dom->loadHTML($content);
+
+    $header = array();
+	$header1 = $dom->getElementById("hdr"); //find all elements with id hdr
+	$header2 = $header1->getElementsByTagName("th"); //find all elements inside tag <th>
+	foreach ($header2 as $building) {
+		$arr1 = $bulding->getElementsByTagName("input"); //find all the building name inside tag <input>
+		$header[] = array(
+			'name' => $arr1
+			);
+	}
+	//$timeheader = $header[0];
+	//echo $timeheader;  //frint out the time header
+	foreach ($header as $value) {
+		$buildings = $value['name'];
+		for ($a = 0; $a < $buildings->length; $a++){
+			echo $buildings->$building($a)->nodeValue . "<br />"; //print out the building header
+		}
+
+	}
+
 	
 	$data = array();
-	$container1 = $dom->getElementById("table-data");//find all element with id table-data 
+	$container1 = $dom->getElementById("data");//find all element with id data 
 	$container2 = $container1->getElementsByTagName("tr");//find all element inside tag <tr>
 	foreach($container2 as $item) {
 		$arr = $item->getElementsByTagName("td");//find all element inside tag <td>
@@ -46,35 +66,17 @@
 		);
 	}
 	//$timedata = $data[0];
-	//echo $timedata; <br> //print out time data
+	//echo $timedata;  //print out time data
 	foreach($data as $element) {
         $items = $element['number'];
         for ($i = 0; $i < $items->length; $i++) {
             echo $items->item($i)->nodeValue . "<br />"; 
         }
     }
-	/*
-	$header = array();
-	$header1 = $dom->getElementById("hdr"); //find all elements with id hdr
-	$header2 = $timeheader1->getElementsByTagName("th"); //find all elements inside tag <th>
-	foreach ($header2 as $building) {
-		$arr1 = $bulding->getElementsByTagName("input"); //find all the building name inside tag <input>
-		$header[] = array(
-			'name' => $arr1
-			);
-	}
-	$timeheader = $header[0];
-	echo $timeheader; <br> //frint out the time header
-	foreach ($header as $value) {
-		$buildingheaders = $value['name'];
-		for ($a = 1; $a < $buildingheaders->length; $a++){
-			echo $buildingheaders->$buildingheader($a)->nodeValue . "<br />"; //print out the building header
-		}
-
-	}
-
-	}
 	
+	
+	
+	/*
 	formating 
 	<table>
 		<tr>
