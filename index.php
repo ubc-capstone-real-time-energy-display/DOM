@@ -3,7 +3,7 @@
 <body>
 <?php 
 	//open the html
-    $url = "test%20text.html";
+    $url = "localhost:4433/DOM/test%20text.html";
 
     $ch = curl_init($url);
     
@@ -18,7 +18,7 @@
     $header[] = 'Connection: keep-alive';
 
     curl_setopt($ch, CURLOPT_HTTPHEADER, $header);
-
+    curl_setopt($ch, CURLOPT_RETURNTRANSFER, TRUE);
     $content=curl_exec($ch);
 
     /*
@@ -49,7 +49,7 @@
 	//echo $timedata; <br> //print out time data
 	foreach($data as $element) {
         $items = $element['number'];
-        for ($i = 1; $i < $items->length; $i++) {
+        for ($i = 0; $i < $items->length; $i++) {
             echo $items->item($i)->nodeValue . "<br />"; 
         }
     }
