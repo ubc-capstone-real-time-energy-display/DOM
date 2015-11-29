@@ -3,10 +3,10 @@
 <body>
 <?php 
 	//open the html
-    $url = "http://ion.energy.ubc.ca/ion/Historical/DisplayLogs.aspx?queryId=831317ed-1695-4a28-a197-9d9bad7e727e&dgm=x-pml%3A%2Fdiagrams%2Fud%2FUBC_SUS%2Fsub_diagrams%2Fsub_diagram_totem+park.dgm&node=VIP.BIS-APPIONPME-P&logServerName=QUERYSERVER.BIS-APPIONPME-P&logServerHandle=327952&isEventLog";
+    $url = "test%20text.html";
 
     $ch = curl_init($url);
-
+    
     $header = array();
     $header[] = 'Accept-Encoding: gzip, deflate, sdch';
     $header[] = 'Accept-Language: en-US,en;q=0.8';
@@ -31,31 +31,76 @@
 
     // Print the content
     //echo htmlspecialchars($content);
-   // echo $content;
+    //echo $content;
 
-   // $dom = new DOMDocument();
-    //$dom->loadHTML($content);
+    $dom = new DOMDocument();
+    $dom->loadHTML($content);
 	
-	//$data = array();
-	//$container1 = $dom->getElementById("hdr");//find all element with id table-data 
-	//$container2 = $container1->getElementsByTagName("th");//find all element inside tag <tr>
-	//foreach($container2 as $item) {
-		//$arr = $item->getElementsByTagName("input");//find all element inside tag <td>
-		//$data[] = array(
-		//	'number' => $arr
-		//);
-	//}
-	//foreach($data as $element) {
-     //   $items = $element['number'];
-       // for ($i = 0; $i < $items->length; $i++) {
-         //   echo $items->item($i)->nodeValue . "<br />";
-        //}
-    //}
+	$data = array();
+	$container1 = $dom->getElementById("table-data");//find all element with id table-data 
+	$container2 = $container1->getElementsByTagName("tr");//find all element inside tag <tr>
+	foreach($container2 as $item) {
+		$arr = $item->getElementsByTagName("td");//find all element inside tag <td>
+		$data[] = array(
+			'number' => $arr
+		);
+	}
+	//$timedata = $data[0];
+	//echo $timedata; <br> //print out time data
+	foreach($data as $element) {
+        $items = $element['number'];
+        for ($i = 1; $i < $items->length; $i++) {
+            echo $items->item($i)->nodeValue . "<br />"; 
+        }
+    }
+	/*
+	$header = array();
+	$header1 = $dom->getElementById("hdr"); //find all elements with id hdr
+	$header2 = $timeheader1->getElementsByTagName("th"); //find all elements inside tag <th>
+	foreach ($header2 as $building) {
+		$arr1 = $bulding->getElementsByTagName("input"); //find all the building name inside tag <input>
+		$header[] = array(
+			'name' => $arr1
+			);
+	}
+	$timeheader = $header[0];
+	echo $timeheader; <br> //frint out the time header
+	foreach ($header as $value) {
+		$buildingheaders = $value['name'];
+		for ($a = 1; $a < $buildingheaders->length; $a++){
+			echo $buildingheaders->$buildingheader($a)->nodeValue . "<br />"; //print out the building header
+		}
+
+	}
+
+	}
 	
-	
-	
-	
-	
+	formating 
+	<table>
+		<tr>
+			<td>$timeheader</td>
+			<td>buildingheader(1)</td>
+			<td>buildingheader(2)</td>
+			<td>buildingheader(3)</td>
+			<td>buildingheader(4)</td>
+			<td>buildingheader(5)</td>
+			<td>buildingheader(6)</td>
+			<td>buildingheader(7)</td>
+			<td>buildingheader(8)</td>
+		</tr>
+		<tr>
+			<td>$timedata<td>
+			<td>item(1)</td>
+			<td>item(2)</td>
+			<td>item(3)</td>
+			<td>item(4)</td>
+			<td>item(5)</td>
+			<td>item(6)</td>
+			<td>item(7)</td>
+			<td>item(8)</td>
+		</tr>
+	</table>
+	*/
 	
 	
 	
