@@ -31,26 +31,26 @@
 
     // Print the content
     //echo htmlspecialchars($content);
-    echo $content;
+   // echo $content;
 
-    $dom = new DOMDocument();
-    $dom->loadHTML($content);
+   // $dom = new DOMDocument();
+    //$dom->loadHTML($content);
 	
-	$data = array();
-	$container1 = $dom->getElementById("data");//find all element with id table-data 
-	$container2 = $container1->getElementsByTagName("tr");//find all element inside tag <tr>
-	foreach($container2 as $item) {
-		$arr = $item->getElementsByTagName("td");//find all element inside tag <td>
-		$data[] = array(
-			'number' => $arr
-		);
-	}
-	foreach($data as $element) {
-        $items = $element['number'];
-        for ($i = 0; $i < $items->length; $i++) {
-            echo $items->item($i)->nodeValue . "<br />";
-        }
-    }
+	//$data = array();
+	//$container1 = $dom->getElementById("hdr");//find all element with id table-data 
+	//$container2 = $container1->getElementsByTagName("th");//find all element inside tag <tr>
+	//foreach($container2 as $item) {
+		//$arr = $item->getElementsByTagName("input");//find all element inside tag <td>
+		//$data[] = array(
+		//	'number' => $arr
+		//);
+	//}
+	//foreach($data as $element) {
+     //   $items = $element['number'];
+       // for ($i = 0; $i < $items->length; $i++) {
+         //   echo $items->item($i)->nodeValue . "<br />";
+        //}
+    //}
 	
 	
 	
