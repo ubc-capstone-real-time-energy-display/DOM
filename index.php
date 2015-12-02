@@ -99,13 +99,14 @@
         }
     }*/
     function build_table($data){
-        $html = '<table>';
+        $html = '<table cellpadding="20px">';
         foreach($data as $energy){
             
         $html .= '<tr>';
         $items = $energy['number'];
             for ($i = 0; $i < $items->length; $i++){
             $html .= '<td>' . $items->item($i)->nodeValue . '</td>';
+
         }
         $html .= '</tr>';
     }
