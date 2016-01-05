@@ -1,7 +1,7 @@
 <?php
     include 'general scraper.php';
-    $building = 'Sing Tao';
-    if ($building == 'Totem') {
+    $building = "Sing Tao";
+    if ($building == "Totem") {
     	$url = "http://ion.energy.ubc.ca/ion/Historical/DisplayLogs.aspx?queryId=831317ed-1695-4a28-a197-9d9bad7e727e&dgm=x-pml:/diagrams/ud/UBC_SUS/sub_diagrams/sub_diagram_totem%20park.dgm&node=VIP.BIS-APPIONPME-P&logServerName=QUERYSERVER.BIS-APPIONPME-P&logServerHandle=327952&isEventLog=";
     }
     elseif ($building == "Sing Tao") {
@@ -52,5 +52,5 @@
     elseif ($building == "Allard Hall") {
     	$url = "http://ion.energy.ubc.ca/ion/Historical/DisplayLogs.aspx?queryId=f6b9062f-2973-485f-a21f-ae3f4c411a89&dgm=//bis-appionpme-p/ION-Ent/config/diagrams/ud/UBC_SUS/sub_diagrams/Allard_482-device_template_elec.dgm&node=Buildings.Allard_482&logServerName=QUERYSERVER.BIS-APPIONPME-P&logServerHandle=327952&isEventLog=";
     }
-    scrapper($url)
+    scrapper($url, $building);
 ?>
