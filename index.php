@@ -1,11 +1,11 @@
 <?php
-    include 'general scraper.php';
-    $building = "Sing Tao";
+    include 'new_scraper.php';
+    $building = "Totem";
     if ($building == "Totem") {
     	$url = "http://ion.energy.ubc.ca/ion/Historical/DisplayLogs.aspx?queryId=831317ed-1695-4a28-a197-9d9bad7e727e&dgm=x-pml:/diagrams/ud/UBC_SUS/sub_diagrams/sub_diagram_totem%20park.dgm&node=VIP.BIS-APPIONPME-P&logServerName=QUERYSERVER.BIS-APPIONPME-P&logServerHandle=327952&isEventLog=";
     }
     elseif ($building == "Sing Tao") {
-    	$url = "http://ion.energy.ubc.ca/ion/Historical/DisplayLogs.aspx?queryId=f6b9062f-2973-485f-a21f-ae3f4c411a89&dgm=x-pml:/diagrams/ud/UBC_SUS/sub_diagrams/Sing_tao_212-device_template_elec.dgm&node=Buildings.Sing_tao_212&logServerName=QUERYSERVER.BIS-APPIONPME-P&logServerHandle=327952&isEventLog=";
+    	$url = "google.com/jhgsfj";
     }
     elseif ($building == "Pharmacy S2") {
     	$url = "http://ion.energy.ubc.ca/ion/Historical/DisplayLogs.aspx?queryId=34ad29eb-52b2-4981-ac81-4693b8a8ce31&dgm=//bis-appionpme-p/ION-Ent/config/diagrams/ud/UBC_SUS/sub_diagrams/sub_diagram_pharmacy.dgm&node=VIP.BIS-APPIONPME-P&logServerName=QUERYSERVER.BIS-APPIONPME-P&logServerHandle=327952&isEventLog=";
