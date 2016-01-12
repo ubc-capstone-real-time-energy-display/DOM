@@ -69,8 +69,8 @@
             $last_retrieved_date = strtotime(str_replace(".000", "", $last_retrieved_date));
             
             // Calculate difference in time between now and last retrieve date
-            $interval = time() - $last_retrieved_date - 32400;
-            if($interval < 900){
+            $interval = time() - $last_retrieved_date - 32400; //matching the timezone
+            if($interval < 10){
                 // if diff is less than 15 mins, then don't need to run again
                 $last_retrieved_date = true;
             }       
@@ -157,6 +157,8 @@
 
                     if(key($data_entry) == "Timestamp"){
                         $timestamp = $data_entry["Timestamp"][0];
+                        $timestamp = strtotime(str_replace(".000", "", $timestamp));
+                        $new_timestamp = $timestamp + 3600; 
                     }
 
                     foreach($building_array as $building){
@@ -165,9 +167,11 @@
                         if (strpos(strtolower($key), strtolower($building_name)) !== false){
                             $building_id = $building[0];
                             $building_energy = $data_entry[$key][0];
+                            $building_energy_float = floatval(preg_replace("/[^-0-9\.]/","",$building_energy));   
+
 
                             $sql = "INSERT INTO energy_consumption (building_id, timestamp, energy)
-                                            VALUES ('$building_id', '$timestamp', '$building_energy')";
+                                            VALUES ('$building_id', '$new_timestamp', '$building_energy')";
                                     
                             if ($conn->query($sql) === TRUE) {
                                 echo "New record created successfully";
